@@ -9,8 +9,8 @@ from download_comics import save_img, download_random_comic, get_file_name
 def main():
     Path('images').mkdir(parents=True, exist_ok=True)
     load_dotenv()
-    vk_group_id = os.getenv('VK_GROUP_ID')
-    vk_token = os.getenv('VK_TOKEN')
+    vk_group_id = os.environ['VK_GROUP_ID']
+    vk_token = os.environ['VK_TOKEN']
     try:
         comic_url = download_random_comic()
         img_url = comic_url['img']
