@@ -12,9 +12,9 @@ def main():
     vk_group_id = os.environ['VK_GROUP_ID']
     vk_token = os.environ['VK_TOKEN']
     try:
-        comic_url = download_random_comic()
-        img_url = comic_url['img']
-        comic_comment = comic_url['alt']
+        json_comic = download_random_comic()
+        img_url = json_comic['img']
+        comic_comment = json_comic['alt']
         filename = get_file_name(img_url)
         save_img(img_url, filename)
         server_url = get_wall_upload_server(vk_group_id, vk_token)
