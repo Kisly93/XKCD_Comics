@@ -19,13 +19,13 @@ def main():
         save_img(img_url, filename)
         server_url = get_wall_upload_server(vk_group_id, vk_token)
         upload_image(server_url, filename)
-        img_link = upload_image(server_url, filename)
-        photo_param = img_link['photo']
-        server_param = img_link['server']
-        hash_param = img_link['hash']
-        photo_options = save_wall_photo(vk_group_id, vk_token, photo_param, server_param, hash_param)
-        owner_id = photo_options['response'][0]['owner_id']
-        media_id = photo_options['response'][0]['id']
+        loaded_image_data = upload_image(server_url, filename)
+        photo_param = loaded_image_data['photo']
+        server_param = loaded_image_data['server']
+        hash_param = loaded_image_data['hash']
+        saved_photo_options = save_wall_photo(vk_group_id, vk_token, photo_param, server_param, hash_param)
+        owner_id = saved_photo_options['response'][0]['owner_id']
+        media_id = saved_photo_options['response'][0]['id']
         publish_wall_post(vk_group_id, vk_token, owner_id, media_id, comic_comment)
 
 

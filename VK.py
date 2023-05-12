@@ -18,8 +18,7 @@ def get_wall_upload_server(vk_group_id, vk_token):
         'v': 5.131
     }
     response = requests.get(url, params=params)
-    api_result = check_vk_response(response)
-    server_url = api_result['response']['upload_url']
+    server_url = check_vk_response(response)['response']['upload_url']
     return server_url
 
 
@@ -28,8 +27,8 @@ def upload_image(server_url, filename):
         files = {'photo': file}
         url = server_url
         response = requests.post(url, files=files)
-    api_result = check_vk_response(response)
-    return api_result
+    loaded_image_data = check_vk_response(response)
+    return loaded_image_data
 
 
 def save_wall_photo(vk_group_id, vk_token, photo_param, server_param, hash_param):
@@ -43,8 +42,8 @@ def save_wall_photo(vk_group_id, vk_token, photo_param, server_param, hash_param
         'v': 5.131
     }
     response = requests.post(url, params=params)
-    api_result = check_vk_response(response)
-    return api_result
+    saved_photo_options = check_vk_response(response)
+    return saved_photo_options
 
 
 def publish_wall_post(vk_group_id, vk_token, owner_id, media_id, comic_comment):
